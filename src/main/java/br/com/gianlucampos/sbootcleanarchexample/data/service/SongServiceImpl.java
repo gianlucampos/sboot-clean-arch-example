@@ -5,6 +5,8 @@ import br.com.gianlucampos.sbootcleanarchexample.domain.repositories.SongReposit
 import br.com.gianlucampos.sbootcleanarchexample.domain.services.SongService;
 import lombok.AllArgsConstructor;
 
+import java.util.UUID;
+
 @AllArgsConstructor
 public class SongServiceImpl implements SongService {
 
@@ -12,7 +14,7 @@ public class SongServiceImpl implements SongService {
 
     @Override
     public SongDTO retrieveSong(String id) {
-        var song = songRepository.retrieveSong(id);
+        var song = songRepository.retrieveSong(UUID.fromString(id));
         return new SongDTO(song);
     }
 
@@ -23,6 +25,6 @@ public class SongServiceImpl implements SongService {
 
     @Override
     public void deleteSong(String id) {
-        songRepository.deleteSong(id);
+        songRepository.deleteSong(UUID.fromString(id));
     }
 }
