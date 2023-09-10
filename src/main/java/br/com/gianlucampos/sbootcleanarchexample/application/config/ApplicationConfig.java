@@ -30,8 +30,9 @@ public class ApplicationConfig {
     public ClientService clientService(ClientRepository clientRepository) {
         return new ClientServiceImpl(clientRepository);
     }
+
     @Bean
-    public ClientRepository clientRepository( RestTemplate restTemplate) {
+    public ClientRepository clientRepository(RestTemplate restTemplate) {
         return new ClientRepositoryImpl(restTemplate);
     }
 

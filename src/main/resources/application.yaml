@@ -11,3 +11,7 @@ spring:
   jpa:
     hibernate:
       ddl-auto: create-drop
+
+  server:
+    url: http://localhost:8080
+    get-songs-url: api/v1/songs/{id}

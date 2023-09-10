@@ -3,8 +3,9 @@ package br.com.gianlucampos.sbootcleanarchexample.data.repository;
 import br.com.gianlucampos.sbootcleanarchexample.application.dtos.SongDTO;
 import br.com.gianlucampos.sbootcleanarchexample.domain.entities.Song;
 import br.com.gianlucampos.sbootcleanarchexample.domain.repositories.ClientRepository;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -14,12 +15,16 @@ import java.util.Objects;
 import java.util.UUID;
 
 @Slf4j
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class ClientRepositoryImpl implements ClientRepository {
 
+    @Value("${spring.server.url}")
+    private String URL_SERVER;
+
+    @Value("${spring.server.get-songs-url}")
+    private String GET_SONGS_URL;
+
     private final RestTemplate restTemplate;
-    private final String URL_SERVER = "http://localhost:8080/";
-    private final String GET_SONGS_URL = "api/v1/songs/{id}";
 
     @Override
     public Song retrieveSong(UUID id) {
